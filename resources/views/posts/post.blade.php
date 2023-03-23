@@ -1,8 +1,12 @@
 <x-master-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Post') }}
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                {{ __('Post') }}
+            </h2>
+            <a href="{{route('new-post')}}" class="border border-blue-400 px-5 py-1 rounded bg-blue-500">New Post</a>
+        </div>
+
     </x-slot>
 
     <div class="py-12">
