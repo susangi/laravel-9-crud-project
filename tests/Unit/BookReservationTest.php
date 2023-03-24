@@ -1,10 +1,8 @@
 <?php
 
-namespace Tests\Feature;
 
 use App\Models\Book;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class BookReservationTest extends TestCase
@@ -19,7 +17,6 @@ class BookReservationTest extends TestCase
      */
     public function test_a_book_can_be_added_to_the_library()
     {
-        $this->withoutExceptionHandling();
 
         $response = $this->post('/books', [
             'title' => 'Book',
@@ -34,5 +31,23 @@ class BookReservationTest extends TestCase
 
     public function test_a_book_title_is_required()
     {
+
+        $response = $this->post('/books', [
+            'title' => '',
+            'author' => 'Victor'
+        ]);
+
+        $response->assertSessionHasErrors('title');
+    }
+
+    public function test_a_book_author_is_required()
+    {
+
+        $response = $this->post('/books', [
+            'title' => 'Book',
+            'author' => ''
+        ]);
+
+        $response->assertSessionHasErrors('author');
     }
 }
