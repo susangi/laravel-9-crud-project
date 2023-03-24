@@ -2,21 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
-use App\Models\Post;
-use Exception;
+use App\Models\Book;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class PostController extends Controller
+class BookController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $post = Post::all();
-        return view('posts.post', ['posts' => $post]);
+        //
     }
 
     /**
@@ -30,20 +26,12 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
-        try {
-            $post = Post::create([
-                'title' => $request->title,
-                'content' => $request->content,
-                'user_id' => auth()->user()->id
-            ]);
-        } catch (Exception $exception) {
-
-        }
-
-
-        return redirect('/post');
+        Book::create([
+            'title' => $request->title,
+            'author' => $request->author
+        ]);
     }
 
     /**

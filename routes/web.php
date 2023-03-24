@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -37,5 +38,6 @@ Route::post('/post/create', [PostController::class, 'store'])->middleware(['auth
 Route::view('/post/new', 'posts.form')->name('new-post')->middleware(['auth']);
 Route::get('/user', [UserController::class, 'index'])->name('user')->middleware(['auth']);
 
+Route::post('/books', [BookController::class, 'store']);
 
 require __DIR__.'/auth.php';
